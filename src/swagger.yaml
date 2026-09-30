@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Task Manager API
+  description: API RESTful modular para gestión de tareas desarrollada con Node.js, Express y Swagger.
+  version: 1.0.0
+  contact:
+    name: Gabriel Montiel (Gabmon24)
+    url: https://www.linkedin.com/in/gabriel-montiel-5239801a9
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Servidor Local de Desarrollo
+
+paths:
+  /tasks:
+    get:
+      summary: Obtener todas las tareas
+      description: Retorna un listado de tareas con opción de filtrado por estado.
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [PENDING, IN_PROGRESS, COMPLETED]
+          description: Filtrar tareas por estado
+      responses:
+        '200':
+          description: Lista de tareas obtenida exitosamente
+    post:
+      summary: Crear una nueva tarea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  example: "Implementar autenticación JWT"
+                description:
+                  type: string
+                  example: "Agregar middleware de seguridad para la API"
+                status:
+                  type: string
+                  enum: [PENDING, IN_PROGRESS, COMPLETED]
+                  example: "PENDING"
+                priority:
+                  type: string
+                  enum: [LOW, MEDIUM, HIGH]
+                  example: "HIGH"
+      responses:
+        '201':
+          description: Tarea creada exitosamente
+
+  /tasks/{id}:
+    get:
+      summary: Obtener una tarea por su ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tarea encontrada
+        '404':
+          description: Tarea no encontrada
+    put:
+      summary: Actualizar una tarea existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+                  enum: [PENDING, IN_PROGRESS, COMPLETED]
+                priority:
+                  type: string
+                  enum: [LOW, MEDIUM, HIGH]
+      responses:
+        '200':
+          description: Tarea actualizada exitosamente
+        '404':
+          description: Tarea no encontrada
+    delete:
+      summary: Eliminar una tarea por su ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tarea eliminada exitosamente
+        '404':
+          description: Tarea no encontrada

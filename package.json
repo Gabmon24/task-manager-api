@@ -1,0 +1,32 @@
+{
+  "name": "task-manager-api",
+  "version": "1.0.0",
+  "description": "API RESTful modular para gestion de tareas desarrollada en Node.js y Express con Clean Architecture y Swagger.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "author": "Gabriel Montiel (Gabmon24)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "swagger-ui-express": "^5.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest-api",
+    "swagger",
+    "clean-architecture",
+    "adso",
+    "sena"
+  ]
+}
